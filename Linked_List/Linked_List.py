@@ -23,8 +23,40 @@ class LinkedList:
         while temp:
             print(temp.data)
             temp = temp.next
+    
+    # Function to insert a new node at the beigning of the LinkedList
+    def pushLinkedList(self,new_data):
+        # Step 1: create a new node
+        new_node = Node(new_data)
+        # Step 2: make the new node as the head of the LinkedList
+        new_node.next = self.head
+        # Step 3: set the head to point to the new node
+        self.head = new_node
+        # Let's call printList() to check the new node added on the LinkedList
+        self.printList()
 
-if __name__ == 'main':
+    def insertAfter(self,prev_node, new_data):
+
+        # Step 1: Check if given node is not None
+        if prev_node is not None:
+            # Find node on linked list
+            
+            # Step 2: Createa new node
+            new_node = Node(new_data)
+            # Step 3: Make next of new node as next of previous node
+            new_node.next = prev_node.next
+            # Step 4: Set the next of previous node to point to the new node
+            prev_node.next = new_node.next
+            # Step 5: Make next to prev_node as new node
+            prev_node.next = new_node
+            # Print the linked list of all nodes
+            self.printList()
+        else:   
+            print("Given node is None")
+            return 
+
+
+if __name__ == '__main__':
     # We instanciated the Linked List object
     linked_list = LinkedList()
     # Ceated the linked list head and the second and third node
@@ -37,3 +69,7 @@ if __name__ == 'main':
     second.next = third
 
     linked_list.printList()
+
+    linked_list.pushLinkedList(4)
+
+    linked_list.insertAfter(1, 5)
